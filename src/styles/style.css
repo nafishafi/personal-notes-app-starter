@@ -100,6 +100,7 @@ button { font-family: inherit; }
 
 .header-brand {
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .brand-link {
@@ -127,6 +128,7 @@ button { font-family: inherit; }
 /* ===== Navigation ===== */
 .navigation {
   flex: 1;
+  min-width: 0;
 }
 
 .navigation ul {
@@ -684,15 +686,144 @@ main {
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 480px) {
+
+/* --- Small mobile (< 480px) --- */
+@media (max-width: 479px) {
+  /* Header: stack brand + actions in one row, nav below */
   .app-header {
-    padding: 0 16px;
-    gap: 12px;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px 14px 8px;
+    gap: 8px;
+    row-gap: 6px;
+  }
+
+  .header-brand {
+    flex: 1 1 auto;
+  }
+
+  .brand-text {
+    font-size: 17px;
+  }
+
+  .brand-icon {
+    font-size: 22px;
+  }
+
+  /* Nav takes full width on second row */
+  .navigation {
+    order: 3;
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .navigation ul {
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  /* Actions stay on first row, right side */
+  .header-actions {
+    flex-shrink: 0;
+    gap: 8px;
+  }
+
+  .btn-add-header {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .toggle-theme {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  /* Main content */
+  main {
+    padding: 20px 14px 110px;
+  }
+
+  /* Page header */
+  .page-title {
+    font-size: 22px;
+  }
+
+  /* Note cards: single column, smaller padding */
+  .note-item {
+    padding: 16px;
+  }
+
+  .note-item__title {
+    font-size: 15px;
+  }
+
+  /* Detail page */
+  .detail-page__title {
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .detail-page__body {
+    font-size: 15px;
+  }
+
+  /* FAB action buttons – anchor safely away from edge */
+  .detail-page__action,
+  .add-new-page__action {
+    bottom: 20px;
+    right: 16px;
+    gap: 10px;
+  }
+
+  .action {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  /* Add note page – prevent title overflowing */
+  .add-new-page__input__title {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+
+  .add-note-header {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* Confirm dialog */
+  .confirm-dialog {
+    padding: 24px 20px 20px;
+  }
+
+  .confirm-title {
+    font-size: 18px;
+  }
+
+  .confirm-btn {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
+
+/* --- Medium mobile / large phone (480px – 639px) --- */
+@media (min-width: 480px) and (max-width: 639px) {
+  .app-header {
+    padding: 0 18px;
+    gap: 14px;
   }
 
   main {
-    padding: 24px 16px 100px;
+    padding: 24px 18px 110px;
   }
+
+  .btn-add-text { display: inline; }
 
   .detail-page__title {
     font-size: 28px;
@@ -703,6 +834,15 @@ main {
     bottom: 24px;
     right: 20px;
   }
+
+  .add-new-page__input__title {
+    font-size: clamp(28px, 6vw, 48px);
+  }
+}
+
+/* Show btn-add-text for screens >= 480px */
+@media (min-width: 480px) {
+  .btn-add-text { display: inline; }
 }
 
 /* ===== Confirm Dialog ===== */
